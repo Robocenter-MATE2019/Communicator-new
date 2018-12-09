@@ -16,12 +16,19 @@ void setup()
 	BLMotor.init();
 	delay(5000);
 	comm.init();
+
 }
 void loop()
 {
+
 	Axis axis;
 	if (comm.read(axis))
 	{
-		BLMotor.set_power(axis.z);
+		Serial.print(axis.x);
+		Serial.print('-');
+		Serial.print(axis.y);
+		Serial.print('-');
+		Serial.println(axis.z);
+		///BLMotor.set_power(axis.z);
 	}
 }

@@ -11,8 +11,5 @@ class UR_Communicator
 public:
 	void init();
 	bool read(Axis &axis);
-	/*UR_Communicator();
-	~UR_Communicator();*/
-
 };
 
