@@ -31,4 +31,5 @@ void loop()
 		Serial.println(axis.z);
 		///BLMotor.set_power(axis.z);
 	}
+	Serial.println("works");
 }

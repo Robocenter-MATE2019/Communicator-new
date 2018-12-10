@@ -11,14 +11,24 @@ bool UR_Communicator::read(Axis & axis)
 	
 	if (Serial.available() > 4)
 	{
-		String temp = Serial.readString();
-		if (temp[1] != '-'&& temp[3] != '-')
+		int8_t asterisk = 0;
+		while (asterisk != '*')
+		{
+			asterisk = Serial.read();
+			if (Serial.available() == 0)
+			{
+				return false;
+			}
+		}
+		String axes = Serial.readStringUntil('-');
+		if (axes.length() != 3)
 		{
 			return false;
 		}
-		axis.x = temp[0];
-		axis.y = temp[2];
-		axis.z = temp[4];
+		axis.x =axes[0] ;
+		axis.y =axes[1] ;
+		axis.z = axes[2];
+		Serial.readString();
 		return true;
 	}
 	return false;
